@@ -9,5 +9,9 @@ class noticia extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'categoria', 'conteudo' , 'img'];
+    protected $fillable = ['titulo', 'conteudo' , 'img', 'cod_categoria'];
+
+    public function categoria(){
+        return $this->belongsTo(categoria::class);
+    }
 }

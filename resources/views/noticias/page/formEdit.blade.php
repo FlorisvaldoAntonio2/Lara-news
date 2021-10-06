@@ -19,11 +19,11 @@
 
             <div class="form-row">
                 <div class="col-6">
-                    <label for="categoria">Categoria:</label>
-                    <select class="custom-select" name="categoria" id="categoria">
-                        <option value="esporte">Esporte</option>
-                        <option value="arte">Arte</option>
-                        <option value="lazer">Lazer</option>
+                    <label for="cod_categoria">Categoria:</label>
+                    <select class="custom-select" name="cod_categoria" id="cod_categoria">
+                        @foreach ($categorias as $categoria)
+                            <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-6">

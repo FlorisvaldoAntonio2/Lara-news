@@ -28,7 +28,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('noticia.create')}}">Cadastrar noticia</a>
                   </li>
-                  
+
                   <li class="nav-item">
                     <a class="nav-link" href="{{ route('sair') }}">Sair</a>
                   </li>

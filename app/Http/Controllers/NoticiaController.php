@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categoria;
 use App\Models\noticia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,8 @@ class NoticiaController extends Controller
     }
 
     public function create(){
-        return view('noticias/page/formulario');
+        $categorias = categoria::all();
+        return view('noticias/page/formulario' , ['categorias' => $categorias]);
     }
 
     public function store(Request $request){
@@ -67,7 +69,8 @@ class NoticiaController extends Controller
 
     public function edit($id){
         $noticia = noticia::find($id);
-        return view('noticias/page/formEdit' , ['noticia' => $noticia]);
+        $categorias = categoria::all();
+        return view('noticias/page/formEdit' , ['noticia' => $noticia , 'categorias' => $categorias]);
     }
 
     public function update($id, Request $request){
