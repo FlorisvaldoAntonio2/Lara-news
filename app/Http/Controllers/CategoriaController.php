@@ -18,7 +18,7 @@ class CategoriaController extends Controller
 
         session()->flash('tipo', 'alert-success');
         session()->flash('msg', 'Cadastrado com sucesso!');
-        return redirect()->route('noticia.index');
+        return redirect()->route('noticia.create');
     }
 
     public function show($id){

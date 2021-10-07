@@ -19,14 +19,15 @@ class NoticiaController extends Controller
 
     public function show($id){
         $noticia = noticia::find($id);
-        //busca atraves do metodo criado no model o relacionamento com categoria
-        $cat = $noticia->categoria()->first();
        
         if(is_null($noticia)){
             session()->flash('tipo', 'alert-danger');
             session()->flash('msg', 'Noticia não encontrada!');
             return redirect()->route('noticia.index');
         }
+        
+        //busca atraves do metodo criado no model o relacionamento com categoria
+        $cat = $noticia->categoria()->first();
 
         return view('noticias/page/detalhes', ['noticia' => $noticia, 'categoria' => $cat]);
     }

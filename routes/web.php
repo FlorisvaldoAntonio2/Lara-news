@@ -15,36 +15,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/noticia' , 'App\Http\Controllers\NoticiaController@index')->name('noticia.index');
+Route::prefix('noticia')->group(function () {
 
-Route::get('/noticia/cadastro' , 'App\Http\Controllers\NoticiaController@create')->name('noticia.create')->middleware('auth');
+    Route::get('/' , 'App\Http\Controllers\NoticiaController@index')->name('noticia.index');
 
-Route::post('/noticia' , 'App\Http\Controllers\NoticiaController@store')->name('noticia.store')->middleware('auth');
+    Route::get('/cadastro' , 'App\Http\Controllers\NoticiaController@create')->name('noticia.create')->middleware('auth');
 
-Route::get('/noticia/{id}/editar' , 'App\Http\Controllers\NoticiaController@edit')->name('noticia.edit')->middleware('auth');
+    Route::post('/' , 'App\Http\Controllers\NoticiaController@store')->name('noticia.store')->middleware('auth');
 
-Route::put('/noticia/{id}' , 'App\Http\Controllers\NoticiaController@update')->name('noticia.update')->middleware('auth');
+    Route::get('/{id}/editar' , 'App\Http\Controllers\NoticiaController@edit')->name('noticia.edit')->middleware('auth')->whereNumber('id');
 
-Route::delete('/noticia/{id}' , 'App\Http\Controllers\NoticiaController@destroy')->name('noticia.destroy')->middleware('auth');
+    Route::put('/{id}' , 'App\Http\Controllers\NoticiaController@update')->name('noticia.update')->middleware('auth')->whereNumber('id');
 
-Route::get('/noticia/{id}' , 'App\Http\Controllers\NoticiaController@show')->name('noticia.show');
+    Route::delete('/{id}' , 'App\Http\Controllers\NoticiaController@destroy')->name('noticia.destroy')->middleware('auth')->whereNumber('id');
 
+    Route::get('/{id}' , 'App\Http\Controllers\NoticiaController@show')->name('noticia.show')->whereNumber('id');
 
-Route::get('/categoria' , 'App\Http\Controllers\CategoriaController@create')->name('categoria.create');
+});
 
-Route::post('/categoria' , 'App\Http\Controllers\CategoriaController@store')->name('categoria.store');
+Route::prefix('categoria')->group(function () {
 
-Route::get('/categoria/{id}' , 'App\Http\Controllers\CategoriaController@show')->name('categoria.show');
+    Route::get('/' , 'App\Http\Controllers\CategoriaController@create')->name('categoria.create');
 
+    Route::post('/' , 'App\Http\Controllers\CategoriaController@store')->name('categoria.store');
 
-Route::get('/entrar' , 'App\Http\Controllers\EntrarController@index')->name('entrar.index');
+    Route::get('/{id}' , 'App\Http\Controllers\CategoriaController@show')->name('categoria.show')->whereNumber('id');
 
-Route::post('/entrar' , 'App\Http\Controllers\EntrarController@login')->name('login');
+});
 
+Route::prefix('entrar')->group(function () {
 
-Route::get('/registrar' , 'App\Http\Controllers\RegirtrarController@create')->name('registro.create');
+    Route::get('/' , 'App\Http\Controllers\EntrarController@index')->name('entrar.index');
 
-Route::post('/registrar' , 'App\Http\Controllers\RegirtrarController@store')->name('registro.store');
+    Route::post('/' , 'App\Http\Controllers\EntrarController@login')->name('login');
+
+});
+
+Route::prefix('registrar')->group(function () {
+
+    Route::get('/' , 'App\Http\Controllers\RegirtrarController@create')->name('registro.create');
+
+    Route::post('/' , 'App\Http\Controllers\RegirtrarController@store')->name('registro.store');
+
+});
 
 Route::get('/sair', function(){
     Auth::logout();
