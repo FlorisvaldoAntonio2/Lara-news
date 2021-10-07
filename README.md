@@ -22,6 +22,8 @@
 - [ ] Melhorar o Layout
 - [ ] Adicição e exclusão de categorias
 - [ ] Ajax
+- [X] Validação(Formulario e Imagens)
+- [X] Autenticação(Login)
 
 #### Conceitos aplicados
 
