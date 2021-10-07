@@ -29,13 +29,18 @@ Route::delete('/noticia/{id}' , 'App\Http\Controllers\NoticiaController@destroy'
 
 Route::get('/noticia/{id}' , 'App\Http\Controllers\NoticiaController@show')->name('noticia.show');
 
+
 Route::get('/categoria' , 'App\Http\Controllers\CategoriaController@create')->name('categoria.create');
 
 Route::post('/categoria' , 'App\Http\Controllers\CategoriaController@store')->name('categoria.store');
 
+Route::get('/categoria/{id}' , 'App\Http\Controllers\CategoriaController@show')->name('categoria.show');
+
+
 Route::get('/entrar' , 'App\Http\Controllers\EntrarController@index')->name('entrar.index');
 
 Route::post('/entrar' , 'App\Http\Controllers\EntrarController@login')->name('login');
+
 
 Route::get('/registrar' , 'App\Http\Controllers\RegirtrarController@create')->name('registro.create');
 

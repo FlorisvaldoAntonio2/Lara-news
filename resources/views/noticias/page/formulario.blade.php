@@ -7,6 +7,8 @@
 @section('conteudo')
     <p>Formulario de cadastro</p>
 
+    @include('layout/sub-layout/erros' , ['erros' => $errors->all()])
+
     <form action="{{route('noticia.store')}}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             @csrf

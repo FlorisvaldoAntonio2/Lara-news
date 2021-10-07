@@ -11,6 +11,8 @@
         <hr class="my-4">
         <p class="lead">Data Criação: {{$noticia->created_at}}</p>
         <p class="lead">Ultima Atualização: {{$noticia->updated_at}}</p>
+        <p class="lead">Categoria: {{$categoria->nome}}</p>
+        
     </div>
     
     

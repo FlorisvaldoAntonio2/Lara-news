@@ -12,6 +12,7 @@ class noticia extends Model
     protected $fillable = ['titulo', 'conteudo' , 'img', 'cod_categoria'];
 
     public function categoria(){
-        return $this->belongsTo(categoria::class);
+        //belongsTo =  pertence a um (class , a chave local, chave estrangeira)
+        return $this->belongsTo(categoria::class, 'cod_categoria' , 'id');
     }
 }

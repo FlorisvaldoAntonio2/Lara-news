@@ -12,6 +12,7 @@ class categoria extends Model
     protected $fillable = ['nome'];
 
     public function noticias(){
-        return $this->hasMany(noticia::class);
+        //hasMany = tem muitos (a class , a chave estrangeira, chave local)
+        return $this->hasMany(noticia::class, 'cod_categoria' , 'id');
     }
 }

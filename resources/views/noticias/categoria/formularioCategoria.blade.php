@@ -21,4 +21,6 @@
             </div>
         </div>
     </form>
+
+    {{-- <a href="{{route('categoria.show' , 2)}}">Todas as categorias</a> --}}
 @endsection

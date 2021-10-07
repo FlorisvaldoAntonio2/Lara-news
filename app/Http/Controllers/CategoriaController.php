@@ -20,4 +20,10 @@ class CategoriaController extends Controller
         session()->flash('msg', 'Cadastrado com sucesso!');
         return redirect()->route('noticia.index');
     }
+
+    public function show($id){
+        $cat = categoria::find($id);
+        //busca todas as noticias com essa categoria
+        $noticias = $cat->noticias()->get();
+    }
 }

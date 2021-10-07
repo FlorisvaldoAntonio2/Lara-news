@@ -8,15 +8,7 @@
 
     <h1>Login</h1>
 
-    @if($errors->any())
-        <div class="row justify-content-center">
-            <div class="alert alert-danger" role="alert"> 
-                @foreach ($errors->all() as $error)
-                    {{$error}}
-                @endforeach 
-            </div>
-        </div>
-    @endif
+    @include('layout/sub-layout/erros' , ['erros' => $errors->all()])
 
     <form action="{{route('login')}}" method="post">
         <div class="form-group">

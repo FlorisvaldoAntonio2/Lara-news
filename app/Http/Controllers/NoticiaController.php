@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\validaNoticia;
 use App\Models\categoria;
 use App\Models\noticia;
 use Illuminate\Http\Request;
@@ -18,13 +19,16 @@ class NoticiaController extends Controller
 
     public function show($id){
         $noticia = noticia::find($id);
+        //busca atraves do metodo criado no model o relacionamento com categoria
+        $cat = $noticia->categoria()->first();
+       
         if(is_null($noticia)){
             session()->flash('tipo', 'alert-danger');
             session()->flash('msg', 'Noticia não encontrada!');
             return redirect()->route('noticia.index');
         }
 
-        return view('noticias/page/detalhes', ['noticia' => $noticia]);
+        return view('noticias/page/detalhes', ['noticia' => $noticia, 'categoria' => $cat]);
     }
 
     public function create(){
@@ -32,14 +36,13 @@ class NoticiaController extends Controller
         return view('noticias/page/formulario' , ['categorias' => $categorias]);
     }
 
-    public function store(Request $request){
+    public function store(validaNoticia $request){
         $data = $request->all();
-
-        if($request->hasFile('img')){
+        
+        if($request->hasFile('img') ){
             $img = $request->img->store('noticias') ;
             $data['img'] = $img;
         }
-        
         noticia::create($data);
 
         session()->flash('tipo', 'alert-success');
