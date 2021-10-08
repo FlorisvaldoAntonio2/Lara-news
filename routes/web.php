@@ -31,6 +31,8 @@ Route::prefix('noticia')->group(function () {
 
     Route::get('/{id}' , 'App\Http\Controllers\NoticiaController@show')->name('noticia.show')->whereNumber('id');
 
+    Route::match(['get' , 'post'] , '/busca' , 'App\Http\Controllers\NoticiaController@search')->name('noticia.search')->whereAlpha('busca');
+
 });
 
 Route::prefix('categoria')->group(function () {

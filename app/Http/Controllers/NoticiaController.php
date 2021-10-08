@@ -6,6 +6,7 @@ use App\Http\Requests\validaNoticia;
 use App\Models\categoria;
 use App\Models\noticia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class NoticiaController extends Controller
@@ -100,5 +101,16 @@ class NoticiaController extends Controller
         session()->flash('tipo', 'alert-success');
         session()->flash('msg', 'Atualizado com sucesso!');
         return redirect()->route('noticia.index');
+    }
+
+    public function search(Request $request){
+        //definimos o termo da busca
+        $data = $request->search;
+        //pegamos todo o request para o filtro (nosso filtro precisar ser um array)
+        $filtro = $request->except('_token');
+
+        $noticias = noticia::where('titulo','like', '%' . $data . '%')->paginate(6);
+
+        return view('noticias/page/home', ['noticias' => $noticias , "filtro" => $filtro] );
     }
 }
