@@ -24,6 +24,7 @@
 - [ ] Ajax
 - [X] Validação(Formulario e Imagens)
 - [X] Autenticação(Login)
+- [X] Sistema de busca de noticias
 
 #### Conceitos aplicados
 
