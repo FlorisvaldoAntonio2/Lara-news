@@ -7,7 +7,10 @@ use App\Models\categoria;
 use App\Models\noticia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\EmailConfirmacaoPost;
+use App\Models\User;
 
 class NoticiaController extends Controller
 {
@@ -45,7 +48,12 @@ class NoticiaController extends Controller
             $img = $request->img->store('noticias') ;
             $data['img'] = $img;
         }
-        noticia::create($data);
+        
+        $noticia = noticia::create($data);
+
+        $usuario = $request->user();
+
+        Mail::send(new EmailConfirmacaoPost($usuario , $noticia));
 
         session()->flash('tipo', 'alert-success');
         session()->flash('msg', 'Cadastrado com sucesso!');

@@ -52,7 +52,7 @@
     </header>
 
     <section>
-        <div class="container">
+        <div class="container bg-light">
             @yield('conteudo')
         </div>
     </section>
@@ -64,6 +64,8 @@
               <p class="lead">Feito pelo Florisvaldo com muito <i class="fas fa-heart"></i></p>
               <p class="lead"><a href="https://github.com/FlorisvaldoAntonio2"><i class="fab fa-github"></i> GitHub </a></p>
               <p class="lead"><a href="https://linkedin.com/in/florisvaldoantonio"><i class="fab fa-linkedin"></i> linkedin </a></p>
+              <p class="lead text-center"> copyright <i class="fas fa-copyright"></i> </a></p>
+
             </div>
         </div>
     </footer>

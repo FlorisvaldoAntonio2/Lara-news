@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\NoticiaController;
+use App\Mail\EmailConfirmacaoPost;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,7 +68,6 @@ Route::get('/sair', function(){
     Auth::logout();
     return redirect()->route('entrar.index');
 })->name('sair');
-
 
 Route::get('/', function () {
     return view('welcome');

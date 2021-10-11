@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         @foreach ($noticias as $noticia)
             <div class="col-12-sm col-4-lg">
-                <div class="card border-dark text-center mb-3 ml-3 mt-3" style="width: 18rem;">
+                <div class="card border-dark text-dark bg-light mb-3 text-center mb-3 ml-3 mt-3" style="width: 18rem;">
                     <img class="card-img-top" src="{{ url("storage/{$noticia->img}") }}" alt="{{$noticia->titulo}}" height="250">
                     <div class="card-body">
                         <h5 class="card-title">{{$noticia->titulo}}</h5>
