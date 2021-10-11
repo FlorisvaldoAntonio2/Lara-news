@@ -25,6 +25,7 @@
 - [X] Validação(Formulario e Imagens)
 - [X] Autenticação(Login)
 - [X] Sistema de busca de noticias
+- [X] Envio de E-mail, ao cadastrar
 
 #### Conceitos aplicados
 
