@@ -26,6 +26,7 @@
 - [X] Autenticação(Login)
 - [X] Sistema de busca de noticias
 - [X] Envio de E-mail, ao cadastrar
+- [X] Filas no envio de E-mail
 
 #### Conceitos aplicados
 
@@ -34,4 +35,5 @@
 - Controllers
 - uso do Eloquent ORM
 - Templete BLADE
+- Filas
 
