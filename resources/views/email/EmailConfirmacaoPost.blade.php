@@ -1,5 +1,9 @@
-<h1>Nova Noticia - Lara-News</h1>
+@component('mail::message')
+    
+    <h1>Nova Noticia</h1>
 
-<p>{{$user->name}} cadastrou uma nova noticia!</p>
-<p>Titulo da noticia: {{$noticia->titulo}}</p>
-<p>Data: {{$noticia->created_at}}</p>
+    {{$user->name}} cadastrou uma nova noticia!
+    Titulo da noticia: {{$noticia->titulo}}
+    Data: {{$noticia->created_at}}
+
+@endcomponent

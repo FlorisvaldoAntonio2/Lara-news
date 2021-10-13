@@ -34,17 +34,19 @@ Route::prefix('noticia')->group(function () {
 
     Route::get('/{id}' , 'App\Http\Controllers\NoticiaController@show')->name('noticia.show')->whereNumber('id');
 
-    Route::match(['get' , 'post'] , '/busca' , 'App\Http\Controllers\NoticiaController@search')->name('noticia.search')->whereAlpha('busca');
+    Route::match(['get' , 'post'] , '/busca' , 'App\Http\Controllers\NoticiaController@search')->name('noticia.search');
+
+    Route::match(['get' , 'post'] , '/filtro' , 'App\Http\Controllers\NoticiaController@filter')->name('noticia.filter');
 
 });
 
 Route::prefix('categoria')->group(function () {
 
-    Route::get('/' , 'App\Http\Controllers\CategoriaController@create')->name('categoria.create');
+    Route::get('/' , 'App\Http\Controllers\CategoriaController@create')->name('categoria.create')->middleware('auth');
 
-    Route::post('/' , 'App\Http\Controllers\CategoriaController@store')->name('categoria.store');
+    Route::post('/' , 'App\Http\Controllers\CategoriaController@store')->name('categoria.store')->middleware('auth');
 
-    Route::get('/{id}' , 'App\Http\Controllers\CategoriaController@show')->name('categoria.show')->whereNumber('id');
+    Route::get('/{id}' , 'App\Http\Controllers\CategoriaController@show')->name('categoria.show')->middleware('auth')->whereNumber('id');
 
 });
 

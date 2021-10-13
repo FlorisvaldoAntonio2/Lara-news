@@ -37,7 +37,8 @@ class EmailConfirmacaoPost extends Mailable
     {
         $this->subject('Nova noticia!');
         //$this->to('seu email', 'seu nome'); <--- email e nome
-        return $this->view('email/EmailConfirmacaoPost', ['user' => $this->user , 'noticia' => $this->noticia]);
+        $this->to('florisvaldoantonio2@gmail.com', 'flor');
+        return $this->markdown('email/EmailConfirmacaoPost', ['user' => $this->user , 'noticia' => $this->noticia]);
     
     }
 }

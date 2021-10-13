@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\validaNoticia;
+use App\Jobs\EnviaEmail;
 use App\Models\categoria;
 use App\Models\noticia;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use App\Models\User;
 class NoticiaController extends Controller
 {
     public function index(){
-        $noticias = noticia::paginate(6);
+        $noticias = noticia::orderBy('created_at','desc')->paginate(6);
         
         return view('noticias/page/home', ['noticias' => $noticias] );
 
@@ -48,12 +49,12 @@ class NoticiaController extends Controller
             $img = $request->img->store('noticias') ;
             $data['img'] = $img;
         }
-        
+
         $noticia = noticia::create($data);
 
         $usuario = $request->user();
 
-        Mail::send(new EmailConfirmacaoPost($usuario , $noticia));
+        EnviaEmail::dispatch($usuario, $noticia);
 
         session()->flash('tipo', 'alert-success');
         session()->flash('msg', 'Cadastrado com sucesso!');
@@ -120,5 +121,12 @@ class NoticiaController extends Controller
         $noticias = noticia::where('titulo','like', '%' . $data . '%')->paginate(6);
 
         return view('noticias/page/home', ['noticias' => $noticias , "filtro" => $filtro] );
+    }
+
+    public function filter(Request $request){
+        $data = isset($request->filter) ? $request->filter : 'created_at';
+        $filtro = $request->except('_token');
+        $noticias = noticia::orderBy($data)->paginate(6);
+        return view('noticias/page/home', ['noticias' => $noticias , 'filtro' => $filtro]);
     }
 }
